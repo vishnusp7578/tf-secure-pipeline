@@ -96,3 +96,19 @@ module "vpn" {
   local_subnet_cidr  = ["10.0.0.0/16"]
   remote_subnet_cidr = ["10.1.0.0/16"]
 }
+
+module "external_lb" {
+  source     = "./modules/loadbalancer-external"
+  project_id = var.project_id
+  region     = var.region
+  vpc_id     = module.vpc.network
+  subnet_id  = module.vpc.subnets["public-subnet"]
+}
+
+module "internal_lb" {
+  source    = "./modules/loadbalancer-internal"
+  region    = var.region
+  zone      = var.zone_a
+  vpc_id    = module.vpc.network
+  subnet_id = module.vpc.subnets["private-subnet"]
+}
