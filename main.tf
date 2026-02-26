@@ -93,4 +93,6 @@ module "vpn" {
   region            = var.region
   peer_ip           = module.vm_a.external_ip
   shared_secret     = var.vpn_shared_secret
+  local_subnet_cidr  = ["10.0.0.0/16"]
+  remote_subnet_cidr = ["10.1.0.0/16"]
 }
