@@ -1,2 +1,5 @@
 project_id   = "project-3e8ad8fb-e674-42bc-97d"
 cloudbuild_sa_email = "536932530209@cloudbuild.gserviceaccount.com"
+project_id        = "project-3e8ad8fb-e674-42bc-97d"
+my_ip             = "0.0.0.0/0"
+vpn_shared_secret = "vishnu75790"
