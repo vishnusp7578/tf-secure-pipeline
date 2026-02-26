@@ -48,6 +48,8 @@ resource "google_compute_vpn_tunnel" "tunnel" {
   target_vpn_gateway = google_compute_vpn_gateway.vpn_gw.id
   peer_ip            = var.peer_ip
   shared_secret      = var.shared_secret
+  local_traffic_selector  = [var.local_subnet_cidr]   
+  remote_traffic_selector = [var.remote_subnet_cidr]  
 depends_on = [
     google_compute_forwarding_rule.vpn_esp,
     google_compute_forwarding_rule.vpn_ike,
