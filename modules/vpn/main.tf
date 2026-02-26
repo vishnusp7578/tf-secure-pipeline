@@ -3,6 +3,10 @@ variable "region" {}
 variable "peer_ip" {}
 variable "shared_secret" {}
 
+resource "google_compute_address" "vpn_ip" {
+  name   = "vpn-gateway-ip"
+  region = var.region
+}
 resource "google_compute_vpn_gateway" "vpn_gw" {
   name    = "vpn-gateway"
   network = var.network
@@ -15,7 +19,7 @@ resource "google_compute_forwarding_rule" "vpn_ike" {
   target     = google_compute_vpn_gateway.vpn_gw.id
   ip_protocol = "UDP"
   ports      = ["500"]
-  network    = var.network
+  ip_address = google_compute_address.vpn_ip.address
 }
 
 resource "google_compute_forwarding_rule" "vpn_nat_t" {
