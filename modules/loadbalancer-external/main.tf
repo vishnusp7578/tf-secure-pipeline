@@ -1,7 +1,7 @@
 resource "google_compute_instance_template" "web_template" {
   name_prefix  = "ext-web-template"
   machine_type = "e2-medium"
-
+  tags = ["web"]
   disk {
     source_image = "debian-cloud/debian-12"
     auto_delete  = true
