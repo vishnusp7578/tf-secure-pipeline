@@ -41,6 +41,3 @@ resource "google_compute_firewall" "lb_health_check" {
   target_tags = ["web"]
 }
 
-  source_ranges = ["0.0.0.0/0"]
-  target_tags   = ["web"]
-}
