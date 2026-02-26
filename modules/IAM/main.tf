@@ -2,7 +2,7 @@
 # Terraform Deployer SA
 
 
-resource "google_service_account" "terraform_sa" {
+resource "google_service_account" "terraform_sa" { 
   account_id   = "terraform-deployer"
   display_name = "Terraform Deployment Service Account"
 }
