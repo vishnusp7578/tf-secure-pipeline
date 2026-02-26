@@ -1,7 +1,7 @@
 variable "network" {}
 variable "my_ip" {}
 
-resource "google_compute_firewall" "ssh" {
+resource "google_compute_firewall" "ssh" { 
   name    = "allow-ssh"
   network = var.network
 
