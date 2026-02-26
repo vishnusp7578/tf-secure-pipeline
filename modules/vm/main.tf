@@ -11,7 +11,7 @@ resource "google_compute_instance" "vm" {
   }
 
   network_interface {
-    subnetwork = var.subnet
+    subnetwork = var.subnet.self_link
 
     dynamic "access_config" {
       for_each = var.external_ip ? [1] : []
