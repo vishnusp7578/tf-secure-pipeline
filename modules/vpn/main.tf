@@ -25,6 +25,7 @@ resource "google_compute_forwarding_rule" "vpn_ike" {
 resource "google_compute_forwarding_rule" "vpn_nat_t" {
   name       = "vpn-nat-t"
   region     = var.region
+  ip_address = google_compute_address.vpn_ip.address
   target     = google_compute_vpn_gateway.vpn_gw.id
   ip_protocol = "UDP"
   ports      = ["4500"]
@@ -34,6 +35,7 @@ resource "google_compute_forwarding_rule" "vpn_nat_t" {
 resource "google_compute_forwarding_rule" "vpn_esp" {
   name        = "vpn-esp"
   region      = var.region
+  ip_address = google_compute_address.vpn_ip.address
   target      = google_compute_vpn_gateway.vpn_gw.id
   ip_protocol = "ESP"
   network     = var.network
@@ -45,4 +47,10 @@ resource "google_compute_vpn_tunnel" "tunnel" {
   target_vpn_gateway = google_compute_vpn_gateway.vpn_gw.id
   peer_ip            = var.peer_ip
   shared_secret      = var.shared_secret
+depends_on = [
+    google_compute_forwarding_rule.vpn_esp,
+    google_compute_forwarding_rule.vpn_ike,
+    google_compute_forwarding_rule.vpn_nat_t
+  ]
+
 }
