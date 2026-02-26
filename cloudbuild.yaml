@@ -1,1 +1,19 @@
+steps:
+  - name: hashicorp/terraform:1.5
+    entrypoint: sh
+    args:
+      - "-c"
+      - |
+        terraform init
+        terraform validate
+        terraform plan -out=tfplan
 
+  - name: hashicorp/terraform:1.5
+    entrypoint: sh
+    args:
+      - "-c"
+      - |
+        terraform apply -auto-approve tfplan
+
+options:
+  logging: CLOUD_LOGGING_ONLY
