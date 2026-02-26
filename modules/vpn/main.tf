@@ -2,6 +2,9 @@ variable "network" {}
 variable "region" {}
 variable "peer_ip" {}
 variable "shared_secret" {}
+variable "local_subnet_cidr" {}
+
+variable "remote_subnet_cidr" {}
 
 resource "google_compute_address" "vpn_ip" {
   name   = "vpn-gateway-ip"
