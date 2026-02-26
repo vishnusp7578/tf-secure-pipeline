@@ -19,4 +19,3 @@ variable "region" { default = "us-central1" }
 variable "zone_a" { default = "us-central1-a" }
 variable "zone_b" { default = "us-central1-b" }
 variable "my_ip" {}
-variable "vpn_shared_secret" {}
