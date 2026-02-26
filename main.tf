@@ -101,14 +101,14 @@ module "external_lb" {
   source     = "./modules/loadbalancer-external"
   project_id = var.project_id
   region     = var.region
-  vpc_id     = module.vpc.network
-  subnet_id  = module.vpc.subnets["public-subnet"]
+  vpc_id     = module.vpc1.network
+  subnet_id  = module.vpc1.subnets["public-subnet"]
 }
 
 module "internal_lb" {
   source    = "./modules/loadbalancer-internal"
   region    = var.region
   zone      = var.zone_a
-  vpc_id    = module.vpc.network
-  subnet_id = module.vpc.subnets["private-subnet"]
+  vpc_id    = module.vpc1.network
+  subnet_id = module.vpc1.subnets["private-subnet"]
 }
