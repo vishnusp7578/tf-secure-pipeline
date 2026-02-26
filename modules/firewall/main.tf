@@ -22,6 +22,7 @@ resource "google_compute_firewall" "http" {
     protocol = "tcp"
     ports    = ["80","443"]
   }
+}
 
 resource "google_compute_firewall" "lb_health_check" {
   name    = "allow-lb-health-check"
