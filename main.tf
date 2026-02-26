@@ -7,7 +7,6 @@ module "iam" {
 
 
 #VPC 1
-
 module "vpc1" {
   source = "./modules/vpc"
 
