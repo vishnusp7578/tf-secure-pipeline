@@ -29,7 +29,6 @@ resource "google_compute_forwarding_rule" "vpn_nat_t" {
   target     = google_compute_vpn_gateway.vpn_gw.id
   ip_protocol = "UDP"
   ports      = ["4500"]
-  network    = var.network
 }
 
 resource "google_compute_forwarding_rule" "vpn_esp" {
@@ -38,7 +37,6 @@ resource "google_compute_forwarding_rule" "vpn_esp" {
   ip_address = google_compute_address.vpn_ip.address
   target      = google_compute_vpn_gateway.vpn_gw.id
   ip_protocol = "ESP"
-  network     = var.network
 }
 
 resource "google_compute_vpn_tunnel" "tunnel" {
