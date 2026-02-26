@@ -5,9 +5,9 @@ module "iam" {
   cloudbuild_sa_email = var.cloudbuild_sa_email
 }
 
-########################
-# VPC 1
-########################
+
+#VPC 1
+
 module "vpc1" {
   source = "./modules/vpc"
 
@@ -20,9 +20,9 @@ module "vpc1" {
   }
 }
 
-########################
-# VPC 2 (for peering & VPN simulation)
-########################
+
+#VPC 2 (for peering & VPN )
+
 module "vpc2" {
   source = "./modules/vpc"
 
@@ -34,9 +34,9 @@ module "vpc2" {
   }
 }
 
-########################
-# VMs
-########################
+
+#VMs
+
 module "vm_a" {
   source  = "./modules/vm"
   name    = "vm-a"
@@ -55,9 +55,9 @@ module "vm_b" {
   external_ip = false
 }
 
-########################
-# Firewall
-########################
+
+#Firewall
+
 module "firewall" {
   source  = "./modules/firewall"
   network = module.vpc1.network
@@ -65,11 +65,25 @@ module "firewall" {
   my_ip = var.my_ip
 }
 
-########################
-# NAT
-########################
+
+#NAT
+
 module "nat" {
   source  = "./modules/nat"
   network = module.vpc1.network
   region  = var.region
+}
+
+module "peering1" {
+  source       = "./modules/peering"
+  name         = "peer-1"
+  network      = module.vpc1.network
+  peer_network = module.vpc2.network
+}
+
+module "peering2" {
+  source       = "./modules/peering"
+  name         = "peer-2"
+  network      = module.vpc2.network
+  peer_network = module.vpc1.network
 }
