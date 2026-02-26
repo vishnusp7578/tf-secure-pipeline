@@ -87,3 +87,11 @@ module "peering2" {
   network      = module.vpc2.network
   peer_network = module.vpc1.network
 }
+
+module "vpn" {
+  source            = "./modules/vpn"
+  network           = module.vpc1.network
+  region            = var.region
+  peer_ip           = module.vm_a.external_ip
+  shared_secret     = var.vpn_shared_secret
+}
