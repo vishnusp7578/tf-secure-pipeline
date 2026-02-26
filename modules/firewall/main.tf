@@ -23,6 +23,24 @@ resource "google_compute_firewall" "http" {
     ports    = ["80","443"]
   }
 
+resource "google_compute_firewall" "lb_health_check" {
+  name    = "allow-lb-health-check"
+  network = var.network
+
+  allow {
+    protocol = "tcp"
+    ports    = ["80"]
+  }
+
+  # Google LB health check IP ranges
+  source_ranges = [
+    "130.211.0.0/22",
+    "35.191.0.0/16"
+  ]
+
+  target_tags = ["web"]
+}
+
   source_ranges = ["0.0.0.0/0"]
   target_tags   = ["web"]
 }
