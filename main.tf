@@ -102,7 +102,7 @@ module "external_lb" {
   project_id = var.project_id
   region     = var.region
   vpc_id     = module.vpc1.network
-  subnet_id  = module.vpc1.subnets["public-subnet"]
+  subnet_id  = module.vpc1.subnets["subnet-a"]
 }
 
 module "internal_lb" {
@@ -110,5 +110,5 @@ module "internal_lb" {
   region    = var.region
   zone      = var.zone_a
   vpc_id    = module.vpc1.network
-  subnet_id = module.vpc1.subnets["private-subnet"]
+  subnet_id = module.vpc1.subnets["subnet-b"]
 }
