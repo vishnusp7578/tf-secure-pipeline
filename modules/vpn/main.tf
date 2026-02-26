@@ -9,6 +9,32 @@ resource "google_compute_vpn_gateway" "vpn_gw" {
   region  = var.region
 }
 
+resource "google_compute_forwarding_rule" "vpn_ike" {
+  name       = "vpn-ike"
+  region     = var.region
+  target     = google_compute_vpn_gateway.vpn_gw.id
+  ip_protocol = "UDP"
+  ports      = ["500"]
+  network    = var.network
+}
+
+resource "google_compute_forwarding_rule" "vpn_nat_t" {
+  name       = "vpn-nat-t"
+  region     = var.region
+  target     = google_compute_vpn_gateway.vpn_gw.id
+  ip_protocol = "UDP"
+  ports      = ["4500"]
+  network    = var.network
+}
+
+resource "google_compute_forwarding_rule" "vpn_esp" {
+  name        = "vpn-esp"
+  region      = var.region
+  target      = google_compute_vpn_gateway.vpn_gw.id
+  ip_protocol = "ESP"
+  network     = var.network
+}
+
 resource "google_compute_vpn_tunnel" "tunnel" {
   name               = "vpn-tunnel"
   region             = var.region
