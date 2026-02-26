@@ -69,7 +69,7 @@ module "firewall" {
 
 module "nat" {
   source  = "./modules/nat"
-  network = module.vpc1.network
+  network = module.vpc1.network 
   region  = var.region
 }
 
