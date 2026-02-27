@@ -1,6 +1,6 @@
 resource "google_dns_managed_zone" "public_zone" {
   name     = "public-zone"
-  dns_name = "example.com."
+  dns_name = "mytf-lab-2026.com."
 }
 
 resource "google_dns_record_set" "a_record" { 
