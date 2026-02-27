@@ -117,4 +117,5 @@ module "dns" {
   source      = "./modules/dns"
   network     = module.vpc1.network
   external_ip = module.vm_a.external_ip
+  internal_ip = module.vm_a.internal_ip
 }
