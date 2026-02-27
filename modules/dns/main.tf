@@ -1,6 +1,3 @@
-variable "network" {}
-variable "external_ip" {}
-
 resource "google_dns_managed_zone" "public_zone" {
   name     = "public-zone"
   dns_name = "example.com."
