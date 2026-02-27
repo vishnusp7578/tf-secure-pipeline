@@ -6,7 +6,7 @@ variable "project_id" {
 variable "region" {
   description = "GCP Region"
   type        = string
-  default     = "us-central1"
+  default     = "us-central1" 
 }
 
 variable "cloudbuild_sa_email" {
