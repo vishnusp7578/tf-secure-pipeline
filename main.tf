@@ -112,3 +112,9 @@ module "internal_lb" {
   vpc_id    = module.vpc1.network
   subnet_id = module.vpc1.subnets["subnet-b"].id
 }
+
+module "dns" {
+  source      = "./modules/dns"
+  network     = module.vpc1.network
+  external_ip = module.vm_a.external_ip
+}
