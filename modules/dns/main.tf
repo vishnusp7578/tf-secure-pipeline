@@ -26,3 +26,11 @@ resource "google_dns_managed_zone" "private_zone" {
     }
   }
 }
+
+resource "google_dns_record_set" "private_vm_record" {
+  name         = "vm-a.internal.local."
+  type         = "A"
+  ttl          = 300
+  managed_zone = google_dns_managed_zone.private_zone.name
+  rrdatas      = [var.internal_ip]
+}
